@@ -2,12 +2,8 @@ Feature: destroy data for tenant
 
   Background:
     * url baseUrl
-    * configure logPrettyRequest = true
-    * configure logPrettyResponse = true
     * configure readTimeout = 90000
-    * def admin = { tenant: 'diku', name: 'diku_admin', password: 'admin' }
-    * def testUser = { tenant: 'test_orders', name: 'test-user', password: 'test' }
-    * callonce read('classpath:common/login.feature') admin
+    * callonce login admin
 
   Scenario: purge all modules for tenant
 
