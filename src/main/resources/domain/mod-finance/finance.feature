@@ -1,4 +1,4 @@
-Feature: finances operations
+Feature: mod-finance tests
 
   Background:
     * url baseUrl
@@ -8,15 +8,13 @@ Feature: finances operations
       | 'mod-login'       |
       | 'mod-permissions' |
 
-    * def admin = { tenant: 'diku', name: 'diku_admin', password: 'admin' }
-
     * def testTenant = 'test_finance'
 
-    * def testAdmin = { tenant: '#(testTenant)', name: 'test-admin', password: 'admin' }
-    * def testUser = { tenant: '#(testTenant)', name: 'test-user', password: 'test' }
+    * def testAdmin = {tenant: '#(testTenant)', name: 'test-admin', password: 'admin'}
+    * def testUser = {tenant: '#(testTenant)', name: 'test-user', password: 'test'}
 
     * table adminAdditionalPermissions
-      | name          |
+      | name                                       |
       | 'finance-storage.transactions.item.delete' |
 
     * table userPermissions

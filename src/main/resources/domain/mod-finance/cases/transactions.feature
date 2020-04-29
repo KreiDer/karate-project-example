@@ -1,11 +1,9 @@
-@ignore
-Feature: Test orders
+Feature: transactions tests
 
   Background:
     * url baseUrl
 
-    # dev only
-#    * callonce dev
+    * callonce dev {tenant: 'test_finance'}
 
     * call login testUser
     * configure headers = { 'Content-Type': 'application/json', 'x-okapi-token': '#(okapitoken)', 'Accept': 'application/json'  }
@@ -90,7 +88,7 @@ Feature: Test orders
         "currency": "USD",
         "description": "PO_Line: History of Incas",
         "fiscalYearId": "1477d5b9-0818-4c34-86d7-45b81b8cca38",
-        "source": "Manual",
+        "source": "User",
         "toFundId": "47d9ac2e-52d4-4fb4-bf80-6f6ced186a3d",
         "transactionType": "Allocation"
     }
@@ -104,7 +102,10 @@ Feature: Test orders
     Given path 'finance/transactions', '071185ff-183e-400e-a334-3894e10f8753'
     When method GET
     Then status 200
-    And match response contains {id: '#uuid', fiscalYearId: '#uuid', toFundId: '#uuid', amount: 25.0, transactionType: 'Allocation', metadata: '#present'}
+#    And match response == schema.transaction
+    * print schema
+#    And match response == schema.transaction
+    And match response contains { amount: 25.0}
 
   Scenario: Get transaction by query
     Given path 'finance/transactions'

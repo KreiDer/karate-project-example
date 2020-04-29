@@ -13,9 +13,8 @@ Feature: destroy data for tenant
     And header x-okapi-token = okapitoken
     When method GET
     Then status 200
-    * set response $[*].action = 'disable'
-    * print response
 
+    * set response $[*].action = 'disable'
 
     Given path '_/proxy/tenants', testUser.tenant, 'install'
     And param purge = true
